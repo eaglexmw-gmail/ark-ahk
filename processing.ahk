@@ -54,7 +54,7 @@ TransferIngotsFromBodyToVault_REPEAT500()
     CloseUI()
     Sleep, 500
     RawMouseMove(0, 2000)
-    sleep, 5000
+    sleep, 500
 }
 
 Drop_REPEAT800()

@@ -94,3 +94,13 @@ DropForWood()
     Sleep, dropDelay
     DropItemRight("Blue Gem")
 }
+
+AutoAttack_REPEAT500()
+{
+    Click
+}
+
+AutoE_REPEAT500()
+{
+    Send E
+}

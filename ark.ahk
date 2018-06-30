@@ -8,14 +8,15 @@
 ;#Warn
 
 ; Macro sets
-macro_set_1 := [Func("DropForBerryRun"), Func("DropForFiber"), Func("DropForMetal"), Func("DropForCrystal"), Func("DropForWood")]
+macro_set_1 := [Func("AutoAttack_REPEAT500"), Func("AutoE_REPEAT500")]
 macro_set_2 := [Func("Empty"), Func("SplitStack_REPEAT300"), Func("Drop_REPEAT800"), Func("TransferSeven"), Func("Empty"), Func("Empty"), Func("Empty"), Func("Empty"), Func("TransferIngotsFromBodyToVault_REPEAT500"), Func("TransferIngotsFromForgeToBody_REPEAT")]
+macro_set_3 := [Func("DropForBerryRun"), Func("DropForFiber"), Func("DropForMetal"), Func("DropForCrystal"), Func("DropForWood")]
 
-macro_sets := [macro_set_1, macro_set_2]
+macro_sets := [macro_set_1, macro_set_2, macro_set_3]
 num_sets := macro_sets.MaxIndex()
 
 macro_set := macro_set_1
-macro_set_index := 1 ; Will cycle to 0 on first load
+macro_set_index := 2 ; Will cycle to 0 on first load
 
 ; Toggle utils
 toggle_states := [false, false, false, false, false, false, false, false, false, false]
