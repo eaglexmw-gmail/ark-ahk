@@ -95,7 +95,7 @@ DropForWood()
     DropItemRight("Blue Gem")
 }
 
-AutoAttack_REPEAT500()
+AutoAttack_REPEAT300()
 {
     Click
 }

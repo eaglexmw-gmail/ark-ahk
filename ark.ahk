@@ -8,7 +8,7 @@
 ;#Warn
 
 ; Macro sets
-macro_set_1 := [Func("AutoAttack_REPEAT500"), Func("AutoE_REPEAT500")]
+macro_set_1 := [Func("AutoAttack_REPEAT300"), Func("AutoE_REPEAT500")]
 macro_set_2 := [Func("Empty"), Func("SplitStack_REPEAT300"), Func("Drop_REPEAT800"), Func("TransferSeven"), Func("Empty"), Func("Empty"), Func("Empty"), Func("Empty"), Func("TransferIngotsFromBodyToVault_REPEAT500"), Func("TransferIngotsFromForgeToBody_REPEAT")]
 macro_set_3 := [Func("DropForBerryRun"), Func("DropForFiber"), Func("DropForMetal"), Func("DropForCrystal"), Func("DropForWood")]
 
@@ -192,12 +192,8 @@ F11::
     CallMacro(9)
 return
 
-F12::
-    toggle_f12 := !toggle_f12
-    if(toggle_f12)
-    {
-        Macro10()
-    } 
+~F12::
+    CallMacro(10)
 return
 
 
