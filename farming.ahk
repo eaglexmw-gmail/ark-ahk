@@ -1,4 +1,4 @@
-dropDelay := 150
+dropDelay := 100
 
 DropForBerryRun()
 {
@@ -95,12 +95,34 @@ DropForWood()
     DropItemRight("Blue Gem")
 }
 
-AutoAttack_REPEAT300()
+
+AutoMetal_R300()
+{
+    if(CheckSlotcap())
+    {
+        Send F
+        Sleep 500
+        DropForMetal()
+        Sleep 500
+        CloseUI()
+
+        return
+    }
+
+    Click
+}
+
+AutoAttack_R300()
 {
     Click
 }
 
-AutoE_REPEAT500()
+AutoE_R500()
 {
     Send E
+}
+
+AutoU_R300()
+{
+    Send U
 }

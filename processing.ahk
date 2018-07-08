@@ -9,12 +9,18 @@ TransferFromRight()
     Click, 1478, 186
 }
 
-TransferIngotsFromForgeToBody_REPEAT()
+; This command has a specific check for inventory as they are often used
+; when looking at a body bag, and the search commands can trigger a melee
+TransferIngotsFromForgeToBody_R500()
 {   
     RawMouseMove(0, -2500)
     Sleep, 200
     Send F
     Sleep, 500
+
+    if(!CheckInventory())
+        return ClearToggleStates()
+
     SearchItemRight("Ingot")
     Sleep, 100
     TransferFromRight()
@@ -25,6 +31,10 @@ TransferIngotsFromForgeToBody_REPEAT()
     Sleep, 250
     Send F
     Sleep, 500
+
+    if(!CheckInventory())
+        return ClearToggleStates()
+
     SearchItemLeft("Ingot")
     Sleep, 100
     TransferFromLeft()
@@ -33,10 +43,16 @@ TransferIngotsFromForgeToBody_REPEAT()
     Sleep, 500
 }
 
-TransferIngotsFromBodyToVault_REPEAT500()
+; This command has a specific check for inventory as they are often used
+; when looking at a body bag, and the search commands can trigger a melee
+TransferIngotsFromBodyToVault_R500()
 {
     Send F
     Sleep, 500
+ 
+    if(!CheckInventory())
+        return ClearToggleStates()
+
     SearchItemRight("Ingot")
     Sleep, 100
     TransferFromRight()
@@ -47,6 +63,10 @@ TransferIngotsFromBodyToVault_REPEAT500()
     Sleep, 250
     Send F
     Sleep, 500
+
+    if(!CheckInventory())
+        return ClearToggleStates()
+
     SearchItemLeft("Ingot")
     Sleep, 100
     TransferFromLeft()
@@ -57,7 +77,7 @@ TransferIngotsFromBodyToVault_REPEAT500()
     sleep, 500
 }
 
-Drop_REPEAT800()
+Drop_R800()
 {
     Send o
 }
@@ -74,7 +94,7 @@ TransferSeven()
     Send {Ctrl up}
 }
 
-SplitStack_REPEAT300()
+SplitStack_R300()
 {
     Send {Ctrl down}
     Sleep 25

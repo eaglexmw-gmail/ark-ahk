@@ -8,9 +8,9 @@
 ;#Warn
 
 ; Macro sets
-macro_set_1 := [Func("AutoAttack_REPEAT300"), Func("AutoE_REPEAT500")]
-macro_set_2 := [Func("Empty"), Func("SplitStack_REPEAT300"), Func("Drop_REPEAT800"), Func("TransferSeven"), Func("Empty"), Func("Empty"), Func("Empty"), Func("Empty"), Func("TransferIngotsFromBodyToVault_REPEAT500"), Func("TransferIngotsFromForgeToBody_REPEAT")]
-macro_set_3 := [Func("DropForBerryRun"), Func("DropForFiber"), Func("DropForMetal"), Func("DropForCrystal"), Func("DropForWood")]
+macro_set_1 := [Func("AutoAttack_R300"), Func("AutoE_R500")]
+macro_set_2 := [Func("CheckInventory"), Func("SplitStack_R300"), Func("Drop_R800"), Func("TransferSeven"), Func("AutoU_R300"), Func("Empty"), Func("Empty"), Func("Empty"), Func("TransferIngotsFromBodyToVault_R500"), Func("TransferIngotsFromForgeToBody_R500")]
+macro_set_3 := [Func("DropForBerryRun"), Func("AutoMetal_R300"), Func("DropForMetal"), Func("DropForCrystal"), Func("DropForWood"),Func("DropForFiber")]
 
 macro_sets := [macro_set_1, macro_set_2, macro_set_3]
 num_sets := macro_sets.MaxIndex()
@@ -19,7 +19,7 @@ macro_set := macro_set_1
 macro_set_index := 2 ; Will cycle to 0 on first load
 
 ; Toggle utils
-toggle_states := [false, false, false, false, false, false, false, false, false, false]
+ClearToggleStates()
 toggle_index := 0
 toggle_delay := 0
 toggle_f1  := false
@@ -58,7 +58,8 @@ CycleMacros()
     
     macro_set_index := Mod(macro_set_index+1, num_sets)
     macro_set := macro_sets[macro_set_index+1]
-    toggle_states := [false, false, false, false, false, false, false, false, false, false]
+    ClearToggleStates()
+    
 
     ; Print out the function list
     f_index := 3
@@ -70,7 +71,7 @@ CycleMacros()
         f_index++
     }
 
-    ShowShortMessage(f_str)
+    ShowShortMessage(f_str, 10000)
 }
 
 ; Notice on script load
@@ -102,6 +103,15 @@ CallMacro(index)
 {
     global macro_set, toggle_states, toggle_index, toggle_delay
 
+    ; If we've alt-tabbed, just reset macro states
+    if(!CheckArk())
+    {
+        ShowShortMessage("Ark not active")
+        ClearToggleStates()
+        
+        return
+    }
+
     func := macro_set[index]
 
     if(!func)
@@ -113,7 +123,7 @@ CallMacro(index)
     funcName := func.Name
 
     ; Is this a repeat function?
-    found := RegExMatch(funcName, "[a-zA-Z0-9]+_REPEAT(\d+)", delay)
+    found := RegExMatch(funcName, "[a-zA-Z0-9]+_R(\d+)", delay)
 
     if(found > 0)
     {
@@ -160,7 +170,6 @@ F3::
 return
 
 F4::
-    ShowShortMessage("Press")
     CallMacro(2)
 return
 
